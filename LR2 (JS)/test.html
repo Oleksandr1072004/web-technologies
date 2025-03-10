@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test JS (LR3)</title>
+</head>
+<body>
+    <h1>Array numbers:</h1>
+    <input type="text" id="array_min_max" value="" />
+    <button onclick="console.log(findMinMax())">Get Min and Max numbers</button>
+    <p id="res_array"></p>
+    <h1>Compare Objects:</h1>
+    <button onclick="console.log(compareObjects({a: 1, b: 2}, {a: 1, b: 2}))">Compare Objects</button>
+    <p id="res_compareObjects"></p>
+    <h1>isInRange numbers:</h1>
+    <input type="text" id="array_min" value="" />
+    <input type="text" id="array_num" value="" />
+    <input type="text" id="array_max" value="" />
+    <button onclick="console.log(isInRange())">Get isInRange numbers</button>
+    <p id="res_isInRange"></p>
+    <h1>Boolean value:</h1>
+    <input type="text" id="value_toggleBoolean" value="" />
+    <button onclick="console.log(toggleBoolean())">Get Boolean value</button>
+    <p id="res_toggleBoolean"></p>
+    <h1>Grade Description:</h1>
+    <input type="text" id="grade_num" value="" />
+    <button onclick="console.log(getGradeDescription())">Get Grade Description</button>
+    <p id="res_grade_num"></p>
+    <h1>Month number getting by if:</h1>
+    <input type="text" id="month_number_if" value="" />
+    <button onclick="console.log(getSeasonIf())">Get current month number by if</button>
+    <p id="res_month_if"></p>
+    <h1>Month number getting by ternary:</h1>
+    <input type="text" id="month_number" value="" />
+    <button onclick="console.log(getSeasonTernary())">Get current month number by ternary</button>
+    <p id="res_month_ternary"></p>
+
+</body>
+<script src="script.js"></script>
+</html>
