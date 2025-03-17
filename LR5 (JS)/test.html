@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog (LR5)</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        input, button { margin: 5px; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h2>Product Catalog</h2>
+
+    <h3>Add Product</h3>
+    <input type="text" id="productId" placeholder="Product ID">
+    <input type="text" id="productName" placeholder="Product Name">
+    <input type="number" id="productPrice" placeholder="Price">
+    <input type="number" id="productQuantity" placeholder="Quantity">
+    <button onclick="addProductUI()">Add Product</button>
+
+    <h3>Remove Product</h3>
+    <input type="text" id="removeProductId" placeholder="Product ID">
+    <button onclick="removeProductUI()">Remove</button>
+
+    <h3>Update Product</h3>
+    <input type="text" id="updateProductId" placeholder="Product ID">
+    <input type="number" id="updatePrice" placeholder="New Price">
+    <input type="number" id="updateQuantity" placeholder="New Quantity">
+    <button onclick="updateProductUI()">Update</button>
+
+    <h3>Search Product</h3>
+    <input type="text" id="searchProductName" placeholder="Product Name">
+    <button onclick="searchProductUI()">Search</button>
+    <p id="searchResult"></p>
+
+    <h3>Order Product</h3>
+    <input type="text" id="orderProductId" placeholder="Product ID">
+    <input type="number" id="orderQuantity" placeholder="Quantity">
+    <button onclick="orderProductUI()">Order</button>
+
+    <script>
+        let productCatalog = new Map();
+
+        function addProduct(id, name, price, quantity) {
+            productCatalog.set(id, { name, price, quantity });
+            alert("Product added!");
+        }
+
+        function removeProduct(id) {
+            productCatalog.delete(id);
+            alert("Product removed!");
+        }
+
+        function updateProduct(id, newPrice, newQuantity) {
+            if (productCatalog.has(id)) {
+                let product = productCatalog.get(id);
+                product.price = newPrice;
+                product.quantity = newQuantity;
+                alert("Product updated!");
+            } else {
+                alert("Product not found!");
+            }
+        }
+
+        function searchProduct(name) {
+            for (let [id, product] of productCatalog) {
+                if (product.name === name) return product;
+            }
+            return null;
+        }
+
+        function orderProduct(id, quantity) {
+            if (productCatalog.has(id)) {
+                let product = productCatalog.get(id);
+                if (product.quantity >= quantity) {
+                    product.quantity -= quantity;
+                    alert("Order placed!");
+                } else {
+                    alert("Insufficient stock!");
+                }
+            } else {
+                alert("Product not found!");
+            }
+        }
+
+        function addProductUI() {
+            let id = document.getElementById("productId").value;
+            let name = document.getElementById("productName").value;
+            let price = Number(document.getElementById("productPrice").value);
+            let quantity = Number(document.getElementById("productQuantity").value);
+            addProduct(id, name, price, quantity);
+        }
+
+        function removeProductUI() {
+            let id = document.getElementById("removeProductId").value;
+            removeProduct(id);
+        }
+
+        function updateProductUI() {
+            let id = document.getElementById("updateProductId").value;
+            let price = Number(document.getElementById("updatePrice").value);
+            let quantity = Number(document.getElementById("updateQuantity").value);
+            updateProduct(id, price, quantity);
+        }
+
+        function searchProductUI() {
+            let name = document.getElementById("searchProductName").value;
+            let product = searchProduct(name);
+            if (product) {
+                document.getElementById("searchResult").innerText = `Found: ${name}, Price: ${product.price}, Quantity: ${product.quantity}`;
+            } else {
+                document.getElementById("searchResult").innerText = "Product not found!";
+            }
+        }
+
+        function orderProductUI() {
+            let id = document.getElementById("orderProductId").value;
+            let quantity = Number(document.getElementById("orderQuantity").value);
+            orderProduct(id, quantity);
+        }
+    </script>
+</body>
+</html>

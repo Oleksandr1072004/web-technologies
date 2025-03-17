@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Bulb Simulation (LR5)</title>
+    <style>
+        .bulb {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        .on {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="bulb" id="bulb"></div>
+    <button onclick="toggleLight()">Toggle Light</button>
+    <br>
+    <label for="bulbType">Choose bulb type:</label>
+    <select id="bulbType" onchange="changeBulbType()">
+        <option value="regular">Regular</option>
+        <option value="energy-saving">Energy-saving</option>
+        <option value="led">LED</option>
+    </select>
+    <button onclick="setBrightness()">Set Brightness</button>
+    <script>
+        let timeout;
+        function toggleLight() {
+            const bulb = document.getElementById("bulb");
+            bulb.classList.toggle("on");
+            resetAutoOff();
+        }
+
+        function changeBulbType() {
+            const type = document.getElementById("bulbType").value;
+            alert("Selected: " + type);
+        }
+
+        function setBrightness() {
+            let brightness = prompt("Enter brightness level (1-100):");
+            if (brightness) {
+                alert("Brightness set to: " + brightness);
+            }
+        }
+
+        function resetAutoOff() {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                document.getElementById("bulb").classList.remove("on");
+            }, 300000);
+        }
+    </script>
+</body>
+</html>

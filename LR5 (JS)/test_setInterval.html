@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Light (LR5)</title>
+    <style>
+        .light {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        .red { background-color: red; }
+        .yellow { background-color: yellow; }
+        .green { background-color: green; }
+        .flashing-yellow {
+            animation: flash 0.5s infinite alternate;
+        }
+        @keyframes flash {
+            0% { background-color: yellow; }
+            100% { background-color: gray; }
+        }
+    </style>
+</head>
+<body>
+    <div class="light" id="red"></div>
+    <div class="light" id="yellow"></div>
+    <div class="light" id="green"></div>
+    <button onclick="nextState()">Next State</button>
+    <div id="clock"></div>
+    <script>
+        function updateClock() {
+            document.getElementById("clock").innerText = new Date().toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+    </script>
+    <script>
+        let states = ["red", "yellow", "green", "flashing-yellow"];
+        let index = 0;
+        let interval;
+
+        function changeLight() {
+            document.querySelectorAll(".light").forEach(light => light.classList.remove("red", "yellow", "green", "flashing-yellow"));
+
+            let currentState = states[index];
+            if (currentState === "flashing-yellow") {
+                document.getElementById("yellow").classList.add("flashing-yellow");
+            } else {
+                document.getElementById(currentState).classList.add(currentState);
+            }
+
+            index = (index + 1) % states.length;
+        }
+
+        function nextState() {
+            clearInterval(interval);
+            changeLight();
+            interval = setInterval(changeLight, 2000);
+        }
+
+        interval = setInterval(changeLight, 2000);
+    </script>
+</body>
+</html>
