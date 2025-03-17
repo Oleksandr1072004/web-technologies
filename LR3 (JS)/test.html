@@ -5,12 +5,36 @@
     <title>Test JS (LR3)</title>
 </head>
 <body>
-    <h1>Array numbers:</h1>
-<!--    <p id="array">1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>-->
-<!--    <button onclick="result_for(document.getElementById('array'))">Press</button>-->
+    <h1>Task 1<br>While operation:</h1>
+    <button onclick="result_while()">Get Result</button>
+    <p id="res_while"></p>
+
+    <h1>Task 2<br>For Factorial operation:</h1>
+    <input type="text" id="num" value="" />
+    <button onclick="result_factorial_for()">Get Result of Factorial</button>
+    <p id="res_factorial_for"></p>
+
+    <h1>Task 3<br>Find Month:</h1>
+    <input type="text" id="month_num" value="" />
+    <button onclick="console.log(result_month())">Get Month</button>
+    <p id="res_find_month"></p>
+
+    <h1>Task 4<br>Array numbers:</h1>
     <input type="text" id="array" value="" />
     <button onclick="result_for()">Get Value</button>
     <p id="res_array"></p>
+
+    <h1>Task 5<br>Get vowel value:</h1>
+    <input type="text" id="word" value="" />
+    <button onclick="result_vowel()">Get Vowel</button>
+    <p id="res_word"></p>
+
+    <h1>Task 6<br>Get vowel value:</h1>
+    <input type="text" id="base" value="" />
+    <input type="text" id="exponent" value="" />
+    <button onclick="result_power()">Get Power result</button>
+    <p id="res_power"></p>
+
 </body>
 <script src="script.js"></script>
 </html>
