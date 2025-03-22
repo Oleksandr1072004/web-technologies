@@ -13,8 +13,9 @@ let students = [
     ];
 let numbers = [1, 2, 3, 4, 5];
 let books = [
-        { title: "Book A", author: "Author X", genre: "Fiction", pages: 300, isAvailable: true }
-    ];
+            { title: "Book A", author: "Author X", genre: "Fiction", pages: 300, isAvailable: true },
+            { title: "Book B", author: "Author Y", genre: "Science", pages: 150, isAvailable: false }
+        ];
 let student = { name: "Pavel", age: 21, course: 3 };
 
 function fruitsArrayTasks() {
@@ -72,32 +73,59 @@ function arrayOperations() {
 
 // Task 6: Library Management
 function libraryManagement() {
+    let books = [
+        { title: "Book A", author: "Author X", genre: "Fiction", pages: 300, isAvailable: true }
+    ];
 
+    return {
+        addBook(title, author, genre, pages) {
+            books.splice(1, 0, { title, author, genre, pages, isAvailable: true });
+        },
 
-    function addBook(title, author, genre, pages) {
-        books.splice(1, 0, { title, author, genre, pages, isAvailable: true });
-    }
-    function removeBook(title) {
-        books = books.filter(book => book.title !== title);
-    }
-    function findBooksByAuthor(author) {
-        return books.filter(book => book.author === author);
-    }
-    function toggleBookAvailability(title, isBorrowed) {
-        let book = books.find(book => book.title === title);
-        if (book) book.isAvailable = !isBorrowed;
-    }
-    function sortBooksByPages() {
-        books.sort((a, b) => a.pages - b.pages);
-    }
-    function getBooksStatistics() {
-        let total = books.length;
-        let available = books.filter(book => book.isAvailable).length;
-        let borrowed = total - available;
-        let avgPages = books.reduce((sum, book) => sum + book.pages, 0) / total;
-        return { total, available, borrowed, avgPages };
-    }
+        removeBook(title) {
+            books = books.filter(book => book.title !== title);
+        },
+
+        findBooksByAuthor(author) {
+            return books.filter(book => book.author === author);
+        },
+
+        toggleBookAvailability(title, isBorrowed) {
+            let book = books.find(book => book.title === title);
+            if (book) book.isAvailable = !isBorrowed;
+        },
+
+        sortBooksByPages() {
+            books.sort((a, b) => a.pages - b.pages);
+        },
+
+        getBooksStatistics() {
+            let total = books.length;
+            let available = books.filter(book => book.isAvailable).length;
+            let borrowed = total - available;
+            let avgPages = books.reduce((sum, book) => sum + book.pages, 0) / total;
+            return { total, available, borrowed, avgPages };
+        },
+
+        getAllBooks() {
+            return books;
+        }
+    };
 }
+
+// Example usage:
+function updateDisplay(){
+    const library = libraryManagement();
+    library.addBook("Book B", "Author Y", "Non-Fiction", 250);
+    console.log("Books: ", library.getAllBooks());
+    library.removeBook("Book A");
+    console.log("Find book by author Y: ", library.findBooksByAuthor("Author Y"));
+    library.toggleBookAvailability("Book B", true);
+    library.sortBooksByPages();
+    console.log("Get book statistics: ", library.getBooksStatistics());
+    console.log("All books: ", library.getAllBooks());
+}
+
 
 // Task 7: Student Object
 function studentObjectTasks() {
