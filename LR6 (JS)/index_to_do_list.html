@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список завдань</title>
+   <link href="style_2.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Список завдань</h1>
+
+    <div class="todo-container">
+        <div class="add-todo">
+            <input type="text" id="new-todo-input" placeholder="Додайте нове завдання..." required>
+            <button id="add-todo-btn">Додати</button>
+        </div>
+
+        <div class="sorting">
+            <button class="sort-btn" data-sort="added">За датою додавання</button>
+            <button class="sort-btn" data-sort="completed">За станом виконання</button>
+            <button class="sort-btn" data-sort="updated">За датою оновлення</button>
+            <button class="reset">Скинути сортування</button>
+        </div>
+
+        <ul class="todo-list" id="todo-list">
+            <li class="empty-message">Список завдань порожній. Додайте перше завдання!</li>
+        </ul>
+    </div>
+
+    <script src="script_2.js"></script>
+</body>
+</html>
