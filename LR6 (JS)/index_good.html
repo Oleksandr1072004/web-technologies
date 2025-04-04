@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список товарів</title>
+    <link href="style_1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>Список товарів</h1>
+        <div class="total-price">Загальна вартість: <span id="total-price">0</span> грн</div>
+    </header>
+
+    <div class="filters">
+        <h2>Фільтрація:</h2>
+        <button class="reset-filter">Всі товари</button>
+        <!-- Категорії будуть додані динамічно -->
+    </div>
+
+    <div class="sorting">
+        <h2>Сортування:</h2>
+        <button class="sort-by-price">Сортувати за ціною</button>
+        <button class="sort-by-date">Сортувати за датою додавання</button>
+        <button class="sort-by-update">Сортувати за датою оновлення</button>
+        <button class="reset-sort">Скинути сортування</button>
+    </div>
+
+    <div class="products-list" id="products-list">
+        <p class="empty-message">Наразі список товарів пустий. Додайте новий товар.</p>
+    </div>
+
+    <button class="add-product-btn" id="add-product-btn">Додати новий товар</button>
+
+    <!-- Модальне вікно для додавання/редагування товару -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Додати новий товар</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label for="product-name">Назва товару:</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Ціна:</label>
+                    <input type="number" id="product-price" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Категорія:</label>
+                    <input type="text" id="product-category" required list="categories">
+                    <datalist id="categories">
+                        <!-- Опції будуть додані динамічно -->
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Зображення (URL):</label>
+                    <input type="url" id="product-image" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Опис:</label>
+                    <textarea id="product-description"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel-btn" id="cancel-modal">Скасувати</button>
+                    <button type="submit" class="submit-btn">Зберегти</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Snackbar для повідомлень -->
+    <div class="snackbar" id="snackbar"></div>
+
+    <script src="script_1.js"></script>
+</body>
+</html>
