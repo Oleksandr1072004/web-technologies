@@ -51,8 +51,8 @@ function loadSampleData() {
             name: 'Смартфон',
             price: 12999,
             category: 'Електроніка',
-            image: 'https://via.placeholder.com/300x200?text=Смартфон',
-            description: 'Новий смартфон з потрійною камерою',
+            image: 'https://smart.ua/image/cache/catalog/import_files/9f/9fd5b87ae51911eebb86d85ed3a38e00_a9d2b352e8eb11eebb86d85ed3a38e00-600x600.png',
+            description: 'IPhone 12 Pro Max 128GB Pacific Blue',
             createdAt: new Date(),
             updatedAt: new Date()
         },
@@ -61,7 +61,7 @@ function loadSampleData() {
             name: 'Футболка',
             price: 499,
             category: 'Одяг',
-            image: 'https://via.placeholder.com/300x200?text=Футболка',
+            image: 'https://i0.wp.com/tabooclothes.com.ua/wp-content/uploads/2024/05/%D0%A4%D0%A3%D0%A2-%D0%9A%D0%9B%D0%90%D0%A1%D0%A1-%D0%9A%D0%90%D0%9F-%D0%9F%D0%95%D0%A0%D0%95%D0%94-%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F.jpg?fit=1027%2C1541&ssl=1',
             description: 'Чоловіча футболка з хлопка',
             createdAt: new Date(),
             updatedAt: new Date()
@@ -71,7 +71,7 @@ function loadSampleData() {
             name: 'Книга "JavaScript для початківців"',
             price: 350,
             category: 'Книги',
-            image: 'https://via.placeholder.com/300x200?text=Книга',
+            image: 'https://media.springernature.com/full/springer-static/cover-hires/book/978-1-4302-7218-2',
             description: 'Відмінний посібник для вивчення JavaScript',
             createdAt: new Date(),
             updatedAt: new Date()
