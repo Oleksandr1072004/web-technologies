@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="memory_game_style.css">
+    <title>Title</title>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Memory Pair Game</h1>
+
+        <div class="settings-panel">
+            <h2>Налаштування гри</h2>
+            <div class="settings-group">
+                <label for="rows">Рядки:</label>
+                <input type="number" id="rows" min="4" max="6" value="4">
+
+                <label for="cols">Стовпці:</label>
+                <input type="number" id="cols" min="4" max="6" value="4">
+            </div>
+
+            <div class="settings-group">
+                <label for="difficulty">Складність:</label>
+                <select id="difficulty">
+                    <option value="easy">Легка (3 хв)</option>
+                    <option value="normal">Нормальна (2 хв)</option>
+                    <option value="hard">Важка (1 хв)</option>
+                </select>
+            </div>
+
+            <div class="settings-group">
+                <label for="players">Кількість гравців:</label>
+                <select id="players">
+                    <option value="1">1 гравець</option>
+                    <option value="2">2 гравці</option>
+                </select>
+            </div>
+
+            <div id="player-names" class="hidden">
+                <div class="player-input">
+                    <label for="player1">Гравець 1:</label>
+                    <input type="text" id="player1" placeholder="Ім'я гравця 1">
+                </div>
+                <div class="player-input">
+                    <label for="player2">Гравець 2:</label>
+                    <input type="text" id="player2" placeholder="Ім'я гравця 2">
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <label for="rounds">Кількість раундів:</label>
+                <input type="number" id="rounds" min="1" value="1">
+            </div>
+
+            <div class="buttons">
+                <button id="reset-settings">Скинути налаштування</button>
+                <button id="start-game">Розпочати гру</button>
+            </div>
+        </div>
+
+        <div class="game-info hidden">
+            <div class="timer">Час: <span id="time">00:00</span></div>
+            <div class="moves">Ходи: <span id="move-count">0</span></div>
+            <div class="current-player">Гравець: <span id="current-player">1</span></div>
+            <button id="restart">Рестарт</button>
+        </div>
+
+        <div id="game-board" class="hidden"></div>
+
+        <div id="results" class="hidden">
+            <h2>Результати гри</h2>
+            <div id="results-content"></div>
+            <button id="new-game">Нова гра</button>
+        </div>
+    </div>
+</body>
+<script src="memory_game.js"></script>
+</html>
