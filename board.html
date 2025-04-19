@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="board_style.css">
+</head>
+<body>
+    <div class="kanban-container">
+        <h1>Kanban Board</h1>
+
+        <div class="kanban-board">
+            <!-- Колонка "To Do" -->
+            <div class="kanban-column" id="todo">
+                <h2>To Do</h2>
+                <div class="kanban-items">
+                    <div class="kanban-item" draggable="true" data-id="9">Item #9</div>
+                    <div class="kanban-item" draggable="true" data-id="3">Item #3</div>
+                    <div class="kanban-item" draggable="true" data-id="5">Item #5</div>
+                    <div class="kanban-item" draggable="true" data-id="4">Item #4</div>
+                </div>
+            </div>
+
+            <!-- Колонка "Working" -->
+            <div class="kanban-column" id="working">
+                <h2>Working</h2>
+                <div class="kanban-items">
+                    <div class="kanban-item" draggable="true" data-id="6">Item #6</div>
+                    <div class="kanban-item" draggable="true" data-id="8">Item #8</div>
+                    <div class="kanban-item" draggable="true" data-id="7">Item #7</div>
+                </div>
+            </div>
+
+            <!-- Колонка "Done" -->
+            <div class="kanban-column" id="done">
+                <h2>Done</h2>
+                <div class="kanban-items">
+                    <div class="kanban-item" draggable="true" data-id="11">Item #11</div>
+                    <div class="kanban-item" draggable="true" data-id="2">Item #2</div>
+                    <div class="kanban-item" draggable="true" data-id="13">Item #13</div>
+                    <div class="kanban-item" draggable="true" data-id="14">Item #14</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="board.js"></script>
+</body>
+</html>
