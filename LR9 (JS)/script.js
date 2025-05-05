@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Переключення між вкладками
     const tabBtns = document.querySelectorAll('.tab-btn');
     const forms = document.querySelectorAll('.form');
+    const successMessage = document.getElementById('success-message');
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -12,8 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Додаємо активний клас до поточної кнопки
             this.classList.add('active');
 
-            // Ховаємо всі форми
+            // Ховаємо всі форми та повідомлення про успіх
             forms.forEach(form => form.classList.remove('active'));
+            successMessage.style.display = 'none';
+
             // Показуємо потрібну форму
             document.getElementById(`${tabId}-form`).classList.add('active');
         });
@@ -58,9 +61,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Функція для збереження даних у локальне сховище (імітація збереження в txt файл)
+    function saveUserData(userData) {
+        // Отримуємо існуючі дані або створюємо новий порожній масив
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Додаємо нового користувача
+        users.push(userData);
+
+        // Зберігаємо оновлений масив користувачів
+        localStorage.setItem('users', JSON.stringify(users));
+
+        // Також створюємо та завантажуємо текстовий файл
+        const userDataText = JSON.stringify(userData, null, 2);
+        const blob = new Blob([userDataText], {type: 'text/plain'});
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `user_${userData.email.replace('@', '_at_')}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
     // Валідація форми реєстрації
     const registerForm = document.getElementById('register-form');
-    const successMessage = document.getElementById('success-message');
 
     registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -179,16 +206,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Якщо форма валідна
         if (isValid) {
-            // Тут можна додати відправку форми на сервер
+            // Створюємо об'єкт з даними користувача
+            const userData = {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                email: email.value,
+                password: password.value, // В реальному проекті пароль має бути захешований
+                phone: phone.value,
+                birthDate: birthDate.value,
+                gender: gender.value,
+                country: countrySelect.value,
+                city: citySelect.value,
+                registrationDate: new Date().toISOString()
+            };
+
+            // Зберігаємо дані користувача
+            saveUserData(userData);
+
             // Показуємо повідомлення про успіх
             successMessage.style.display = 'block';
             registerForm.style.display = 'none';
 
-            // Очищаємо форму через 3 секунди
+            // Очищаємо форму та переходимо на форму входу через 3 секунди
             setTimeout(() => {
                 registerForm.reset();
                 successMessage.style.display = 'none';
                 registerForm.style.display = 'block';
+
+                // Автоматично переключаємось на вкладку входу
+                document.querySelector('.tab-btn[data-tab="login"]').click();
             }, 3000);
         }
     });
@@ -203,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Валідація імені користувача
         const username = document.getElementById('login-username');
         if (!username.value) {
-            showError(username, 'Будь ласка, введіть ім\'я користувача');
+            showError(username, 'Будь ласка, введіть email');
             isValid = false;
         } else {
             showSuccess(username);
@@ -220,9 +266,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Якщо форма валідна
         if (isValid) {
-            // Тут можна додати відправку форми на сервер
-            alert('Ви успішно увійшли!');
-            // loginForm.reset();
+            // Перевірка логіна та пароля
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === username.value && u.password === password.value);
+
+            if (user) {
+                // Успішний вхід
+                alert(`Ласкаво просимо, ${user.firstName} ${user.lastName}!`);
+                loginForm.reset();
+            } else {
+                // Невірний логін або пароль
+                alert('Невірний email або пароль!');
+            }
         }
     });
 
