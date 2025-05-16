@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend Search App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Auth Modal -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login / Register</h2>
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main App Content (hidden until auth) -->
+        <div id="app-content" class="hidden">
+            <header>
+                <h1>Friend Search</h1>
+                <button id="logout-btn" class="btn">Logout</button>
+            </header>
+
+            <div class="controls">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search friends...">
+                    <i class="fas fa-search"></i>
+                </div>
+
+                <div class="filter-sort-container">
+                    <div class="filter">
+                        <select id="gender-filter">
+                            <option value="">All Genders</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <input type="number" id="age-min" placeholder="Min Age">
+                        <input type="number" id="age-max" placeholder="Max Age">
+                    </div>
+
+                    <div class="sort">
+                        <select id="sort-by">
+                            <option value="">Sort By</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="age-asc">Age (Low-High)</option>
+                            <option value="age-desc">Age (High-Low)</option>
+                            <option value="registered-asc">Registered (Old-New)</option>
+                            <option value="registered-desc">Registered (New-Old)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="user-cards-container" class="user-cards"></div>
+
+            <div class="pagination">
+                <button id="prev-page" class="btn">Previous</button>
+                <div id="page-numbers" class="page-numbers"></div>
+                <button id="next-page" class="btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
